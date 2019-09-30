@@ -1,4 +1,4 @@
-name: base
+name: image-captioning-beam
 channels:
   - pytorch
   - fastai
