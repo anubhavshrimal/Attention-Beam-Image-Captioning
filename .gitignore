@@ -1,0 +1,7 @@
+.ipynb_checkpoints/*
+__pycache__/
+models.zip
+output_logs_*
+*.pth.tar
+.idea/*
+png/*
