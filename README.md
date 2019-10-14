@@ -13,4 +13,26 @@ conda env create -f environment.yml
 conda env list
 ```
 
-Note: Pretrained models for COCO, Flickr8k, Flickr30k can be downloaded from [here](https://drive.google.com/file/d/1kPeKtfuBNjFslJ33ftbNtygtE1NM0n7L/view?usp=sharing). 
+## Training
+
+Reference data folder and annotations json file for the downloaded dataset (MSCOCO, Flickr8k, Flickr30k) in `create_input_files.py` and run the python script to create the required dataset.
+
+To train a model run `python train.py`.
+All training hyper-parameters are mentioned in `train.py`.
+
+**Note: Pretrained models for MSCOCO, Flickr8k, Flickr30k can be downloaded from [here](https://drive.google.com/file/d/1kPeKtfuBNjFslJ33ftbNtygtE1NM0n7L/view?usp=sharing).**
+
+## Testing / Inference
+
+* You may use `caption.py` to generate image captions and attention map over an image.
+
+  ```
+  python caption.py --img='path/to/image.jpeg' --model='path/to/BEST_checkpoint_coco_5_cap_per_img_5_min_word_freq.pth.tar' --word_map='path/to/WORDMAP_coco_5_cap_per_img_5_min_word_freq.json' --beam_size=5
+  ```
+
+* The Jupyter Notebook `Caption-Sample-Images.ipynb` can be used to caption specified images using the trained model.
+* `Generate-Testset-Predictions.ipynb` is used for generating predictions in the required format for the testing dataset.
+
+## Results
+
+
