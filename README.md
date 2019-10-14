@@ -36,3 +36,18 @@ All training hyper-parameters are mentioned in `train.py`.
 ## Results
 
 ![results table](./img/results.png)
+
+![comparing captions](./img/compare_captions.png)
+
+<div style='text-align: center;'>
+  <img src="./img/1.png" alt="image1">
+  <img src="./img/1a.png" alt="image1a">
+</div>
+<div style='text-align: center;'>
+  <img src="./img/2.png" alt="image2">
+  <img src="./img/2a.png" alt="image2a">
+</div>
+<div style='text-align: center;'>
+  <img src="./img/3.png" alt="image3">
+  <img src="./img/3a.png" alt="image3a">
+</div>
