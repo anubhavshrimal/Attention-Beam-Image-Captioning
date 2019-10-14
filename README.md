@@ -35,4 +35,4 @@ All training hyper-parameters are mentioned in `train.py`.
 
 ## Results
 
-
+![results table](./img/results.png)
