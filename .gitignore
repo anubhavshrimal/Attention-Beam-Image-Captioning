@@ -5,3 +5,4 @@ output_logs_*
 *.pth.tar
 .idea/*
 png/*
+.DS_Store/*
