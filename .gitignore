@@ -6,3 +6,6 @@ output_logs_*
 .idea/*
 png/*
 .DS_Store/*
+.DS_Store
+ui/cam_images/*
+ui/*.ui
