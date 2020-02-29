@@ -69,5 +69,5 @@ This would open the following user interface:
 
 <div style='text-align: center;'>
   <img src="./img/ui-view1.png" alt="ui-view1">
-  <img src="./img/ui-view2.png" alt="ui-view2">
+  <img src="./img/ui-view3.png" alt="ui-view3">
 </div>
