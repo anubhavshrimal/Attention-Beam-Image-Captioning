@@ -55,3 +55,19 @@ All training hyper-parameters are mentioned in `train.py`.
   <img src="./img/3.png" alt="image3">
   <img src="./img/3a.png" alt="image3a">
 </div>
+
+## Intercative User Interface
+
+To use the UI based image captioner module run the following commands:
+
+```bash
+cd ui/
+python MainWindowUI.py 
+```
+
+This would open the following user interface:
+
+<div style='text-align: center;'>
+  <img src="./img/ui-view1.png" alt="ui-view1">
+  <img src="./img/ui-view2.png" alt="ui-view2">
+</div>
