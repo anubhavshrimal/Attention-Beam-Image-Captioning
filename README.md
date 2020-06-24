@@ -24,7 +24,9 @@ Reference data folder and annotations json file for the downloaded dataset (MSCO
 To train a model run `python train.py`.
 All training hyper-parameters are mentioned in `train.py`.
 
-**Note: Pretrained models for MSCOCO, Flickr8k, Flickr30k can be downloaded from [here](https://drive.google.com/file/d/1kPeKtfuBNjFslJ33ftbNtygtE1NM0n7L/view?usp=sharing).**
+**Note: Pretrained models for MSCOCO, Flickr8k, Flickr30k can be downloaded from [here](https://drive.google.com/drive/folders/1DL_Es2yHCGf3U5H6fXcIAjmkmS1nZ3_9?usp=sharing).
+
+The downloaded zip file needs to be extracted in the `models/` directory.**
 
 ## Testing / Inference
 
