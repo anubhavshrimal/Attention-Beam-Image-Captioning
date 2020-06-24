@@ -6,7 +6,6 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -22,17 +21,23 @@ import time
 from ShowCaptionUI import Ui_ShowCaption
 from getCaption import caption
 
+
 class Ui_MainWindow(QWidget):
     def __init__(self, *args, **kwargs):
         super(Ui_MainWindow, self).__init__(*args, **kwargs)
         self.save_path = "./cam_images"
 
-    def setupUi(self, MainWindow):
+    def setupUi(self, MainWindow, model_path, wordmap_path, beam_width):
+        self.args = {
+            'model': model_path,
+            'word_map': wordmap_path,
+            'beam': beam_width
+        }
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(646, 157)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        
+
         self.available_cameras = QCameraInfo.availableCameras()
 
         self.viewfinder = QCameraViewfinder()
@@ -75,7 +80,8 @@ class Ui_MainWindow(QWidget):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Attention Beam Image Captioner"))
+        MainWindow.setWindowTitle(
+            _translate("MainWindow", "Attention Beam Image Captioner"))
         self.captureImage.setText(_translate("MainWindow", "Capture"))
         self.captionImage.setText(_translate("MainWindow", "Caption Image"))
         self.imagePathLabel.setText(_translate("MainWindow", "Image Path:"))
@@ -84,28 +90,29 @@ class Ui_MainWindow(QWidget):
         self.camera = QCamera(self.available_cameras[i])
         self.camera.setViewfinder(self.viewfinder)
         self.camera.setCaptureMode(QCamera.CaptureStillImage)
-        self.camera.error.connect(lambda: self.alert(self.camera.errorString()))
+        self.camera.error.connect(
+            lambda: self.alert(self.camera.errorString()))
         self.camera.start()
 
         self.capture = QCameraImageCapture(self.camera)
         self.capture.error.connect(lambda i, e, s: self.alert(s))
-        self.capture.imageCaptured.connect(lambda d, i: self.statusBar.showMessage("Image %04d captured" % self.save_seq))
+        self.capture.imageCaptured.connect(
+            lambda d, i: self.statusBar.showMessage("Image %04d captured" %
+                                                    self.save_seq))
 
         self.current_camera_name = self.available_cameras[i].description()
         self.save_seq = 0
 
     def take_photo(self):
         timestamp = time.strftime("%d-%b-%Y-%H_%M_%S")
-        image_path = os.path.join(self.save_path, "%s-%04d-%s.jpg" % (
-            self.current_camera_name,
-            self.save_seq,
-            timestamp
-        ))
+        image_path = os.path.join(
+            self.save_path, "%s-%04d-%s.jpg" %
+            (self.current_camera_name, self.save_seq, timestamp))
         self.capture.capture(image_path)
         self.save_seq += 1
 
         self.imagePath.setText(image_path)
-    
+
     def alert(self, s):
         """
         Handle errors coming from QCamera dn QCameraImageCapture by displaying alerts.
@@ -115,12 +122,12 @@ class Ui_MainWindow(QWidget):
 
     def open_show_caption(self):
         image_path = self.imagePath.text()
-        
+
         if len(image_path) == 0 or not os.path.exists(image_path):
             self.alert('Image path is not valid!!')
             return
-        
-        imageCaptionText = caption(image_path)
+
+        imageCaptionText = caption(image_path, self.args)
 
         if imageCaptionText is None:
             self.alert('Pretrained model files not found.')
@@ -131,13 +138,23 @@ class Ui_MainWindow(QWidget):
         self.ui.setupUi(self.window, imageCaptionText, image_path)
         self.window.show()
 
+
 if __name__ == "__main__":
     if not os.path.exists('./cam_images'):
         os.makedirs('./cam_images')
 
+    default_args = {
+        'model':
+        '../models/BEST_checkpoint_coco_5_cap_per_img_5_min_word_freq.pth.tar',
+        'word_map':
+        '../models/WORDMAP_coco_5_cap_per_img_5_min_word_freq.json',
+        'beam': 4
+    }
+
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
+    ui.setupUi(MainWindow, default_args['model'], default_args['word_map'],
+               default_args['beam'])
     MainWindow.show()
     sys.exit(app.exec_())
