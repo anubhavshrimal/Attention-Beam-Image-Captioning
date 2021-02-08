@@ -71,7 +71,7 @@ greenlet==0.4.15
 h5py==2.8.0
 heapdict==1.0.0
 html5lib==1.0.1
-httplib2==0.12.1
+httplib2==0.19.0
 idna==2.8
 imageio==2.4.1
 imagesize==1.1.0
