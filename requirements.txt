@@ -98,7 +98,7 @@ jupyter-highlight-selected-word==0.2.0
 jupyter-http-over-ws==0.0.3
 jupyter-latex-envs==1.4.6
 jupyter-nbextensions-configurator==0.4.1
-jupyterlab==0.35.4
+jupyterlab==1.2.21
 jupyterlab-git==0.5.0
 jupyterlab-server==0.2.0
 keyring==17.0.0
